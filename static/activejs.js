@@ -1,9 +1,9 @@
 $(document).keydown(function(e){
     if(e.which === 13){
         var ans = document.getElementsByName('tbans')[0].value;
-        if(ans != ""){           
+        if(ans != ""){
                submits ++;
-               $.get("http://candid-indigo.codio.io:5000/api/v1.0/checkanswer/" + sid + "^" + tweetid + "^" + ans, function(data, status){
+               $.get("http://michaelpetersenior.com:5000/api/v1.0/checkanswer/" + sid + "^" + tweetid + "^" + ans, function(data, status){
                     if(data === "False"){
                         updatebar();
                         document.getElementById("tbans").value = ""
@@ -13,7 +13,7 @@ $(document).keydown(function(e){
                         updatebar();
                         document.getElementById("tbans").value = ""
                         document.getElementById("tbans").placeholder = "Correct!";                    
-                        $.get("http://candid-indigo.codio.io:5000/api/v1.0/getquestion/" + sid + "^" + document.getElementById("channeldiv").innerHTML, function(data, status){               
+                        $.get("http://michaelpetersenior.com:5000/api/v1.0/getquestion/" + sid + "^" + document.getElementById("channeldiv").innerHTML, function(data, status){               
                             var lst = data.split("^", "2");
                             tweetid = lst[0];
                             if(typeof lst[1] === "undefined"){
@@ -43,12 +43,12 @@ $( document ).ready(function() {
        var scookie = getCookie("sid");
        sid = scookie;
        if(typeof scookie === "undefined"){           
-           $.get("http://candid-indigo.codio.io:5000/api/v1.0/getsid", function(data, status){
+           $.get("http://michaelpetersenior.com:5000/api/v1.0/getsid", function(data, status){
                 createCookie("sid", data, 365);
            });
        }
     
-    $.get("http://candid-indigo.codio.io:5000/api/v1.0/getquestion/" + sid + "^" + document.getElementById("channeldiv").innerHTML, function(data, status){
+    $.get("http://michaelpetersenior.com:5000/api/v1.0/getquestion/" + sid + "^" + document.getElementById("channeldiv").innerHTML, function(data, status){
                 var lst = data.split("^", "2");
                 tweetid = lst[0];
                 document.getElementById("questiontext").innerHTML = lst[1];

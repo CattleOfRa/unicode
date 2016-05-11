@@ -7,7 +7,6 @@ class Questions(object):
         
         self.questions = {}
         self.handle = Twython(app_key=appKey, app_secret=appKeySecret, oauth_token=accessToken, oauth_token_secret=accessTokenSecret)
-        
         self.handle.get_home_timeline()
         print "Remaining API calls: ", self.handle.get_lastfunction_header('x-rate-limit-remaining')
 
@@ -42,7 +41,6 @@ class Questions(object):
     def refresh(self, channel):
         search = self.handle.search(q=channel, count=25)
         tweets = search['statuses']
-
         for tweet in tweets:
             # Not a retweet
             if tweet['text'][:2] != 'RT' and self.exprValidator(tweet['id']):
